@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "dolphin.jpeg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "unit" : "centimeters",
+    "width" : 6.4500000000000002
+  }
+}
