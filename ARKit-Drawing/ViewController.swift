@@ -4,7 +4,10 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    // MARK: - Outlets
     @IBOutlet var sceneView: ARSCNView!
+    
+    // MARK: - properties
     let configuration = ARWorldTrackingConfiguration()
     
     enum ObjectPlacementMode {
@@ -12,7 +15,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     var objectMode: ObjectPlacementMode = .freeform
+    /// The node for the currently selected by the user
+    var selectNode: SCNNode?
     
+    // MARK: - Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showOptions" {
+            let optionsViewController = segue.destination as! OptionsContainerViewController
+            optionsViewController.delegate = self
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +42,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 
+    // MARK: - Actions
     @IBAction func changeObjectMode(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -43,18 +56,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showOptions" {
-            let optionsViewController = segue.destination as! OptionsContainerViewController
-            optionsViewController.delegate = self
-        }
-    }
+    
 }
-
+// MARK: - optionsViewContrillerDelegate
 extension ViewController: OptionsViewControllerDelegate {
     
     func objectSelected(node: SCNNode) {
         dismiss(animated: true, completion: nil)
+        selectNode = node
     }
     
     func togglePlaneVisualization() {
