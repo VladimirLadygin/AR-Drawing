@@ -193,6 +193,27 @@ extension ViewController: ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        switch anchor {
+        case let planeAnchor as ARPlaneAnchor:
+            updateFloor(for: node, anchor: planeAnchor)
+        default:
+            print(#line, #function, "Unknown anchor type\(anchor) is updated")
+        }
+        
         
     }
+}
+
+func updateFloor(for node: SCNNode, anchor:ARPlaneAnchor) {
+    guard let planeNode = node.childNodes.first, let plane = planeNode.geometry as? SCNPlane else {
+        return
+    }
+    
+    //Get estimated plane size
+    let extent = anchor.extent
+    plane.width = CGFloat(extent.x)
+    plane.height = CGFloat(extent.z)
+    
+    // Position the plane in the center
+    planeNode.simdPosition = anchor.center
 }
