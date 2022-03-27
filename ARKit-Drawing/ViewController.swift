@@ -2,7 +2,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet var sceneView: ARSCNView!
@@ -15,13 +15,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     var objectMode: ObjectPlacementMode = .freeform
+    
+    /// Array of planes found and objects places
+    var objectPlaced = [SCNNode]()
+    
+    /// Array of  found  planes
+    var planeNodes = [SCNNode]()
+    
     /// The node for the currently selected by the user
     var selectedNode: SCNNode?
     
     // MARK: - Methods
+    func addNode(_ node:SCNNode, to parentNode: SCNNode) {
+        
+        // Clone the node for creating separate copies of the project
+        let clonedNode = node.clone()
+        
+        // Remember object placed for undo
+        objectPlaced.append(clonedNode)
+        
+        // Add the cloned node to the scene
+        parentNode.addChildNode(clonedNode)
+    }
+    
     /// Add an object in f20 cm in ront of camera
     /// - Parameter node: node of the object to add
     func addNodeInFront(_ node: SCNNode) {
+         
         // Get current camera frame
         guard let frame = sceneView.session.currentFrame else { return }
         
@@ -47,11 +67,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         addNodeToSceneRoot(node)
     }
     
+    
+    
     func addNodeToSceneRoot(_ node: SCNNode) {
-        // Clone the node for creating separate copies of the project
-        let clonedNode = node.clone()
-        // Add the cloned node to the scene
-        sceneView.scene.rootNode.addChildNode(clonedNode)
+        
+        addNode(node, to: sceneView.scene.rootNode)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,6 +81,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             optionsViewController.delegate = self
         }
     }
+    
+    func reloadConfiguration() {
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touch = touches.first, let selectedNode = selectedNode else { return }
@@ -84,7 +111,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        sceneView.session.run(configuration)
+        reloadConfiguration()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,5 +153,46 @@ extension ViewController: OptionsViewControllerDelegate {
     
     func resetScene() {
         dismiss(animated: true, completion: nil)
+    }
+}
+// MARK: - ARSCNViewDelegate
+extension ViewController: ARSCNViewDelegate {
+    
+    func createFloor(planeAnchor: ARPlaneAnchor) -> SCNNode {
+        let extent = planeAnchor.extent
+        
+        let width = CGFloat(extent.x)
+        let height = CGFloat(extent.z)
+        
+        let plane = SCNPlane(width: width, height: height)
+        plane.firstMaterial?.diffuse.contents = UIColor.green
+        
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.eulerAngles.x -= .pi / 2
+        planeNode.opacity = 0.25
+        
+        return planeNode
+    }
+    
+    func nodeAdded(_ node: SCNNode, for anchor: ARPlaneAnchor) {
+        let planeNode = createFloor(planeAnchor: anchor)
+        
+        // Add plane node to the list of plane nodes
+        planeNodes.append(planeNode)
+        
+        node.addChildNode(planeNode)
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        switch anchor {
+        case let planeAnchor as ARPlaneAnchor:
+            nodeAdded(node, for: planeAnchor)
+        default:
+            print(#line, #function, "Unknown anchor is found")
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        
     }
 }
