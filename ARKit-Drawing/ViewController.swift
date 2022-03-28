@@ -113,7 +113,9 @@ class ViewController: UIViewController {
         addNodeToSceneRoot(node)
     }
     
-    
+    func addNodeToImage(_ node: SCNNode) {
+        
+    }
     
     func addNodeToSceneRoot(_ node: SCNNode) {
         
@@ -129,6 +131,7 @@ class ViewController: UIViewController {
     }
     
     func reloadConfiguration() {
+        configuration.detectionImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)
         configuration.planeDetection = .horizontal
         sceneView.session.run(configuration)
     }
@@ -143,7 +146,7 @@ class ViewController: UIViewController {
             let point = touch.location(in: sceneView)
             addNode(selectedNode, at: point)
         case .image:
-            break
+            addNodeToImage(selectedNode)
         }
     }
     
@@ -221,24 +224,29 @@ extension ViewController: OptionsViewControllerDelegate {
 // MARK: - ARSCNViewDelegate
 extension ViewController: ARSCNViewDelegate {
     
-    func createFloor(planeAnchor: ARPlaneAnchor) -> SCNNode {
-        let extent = planeAnchor.extent
+    func createFloor(with size: CGSize, opacity: CGFloat = 0.25) -> SCNNode {
         
-        let width = CGFloat(extent.x)
-        let height = CGFloat(extent.z)
-        
-        let plane = SCNPlane(width: width, height: height)
+        let plane = SCNPlane(width: size.width, height: size.height)
         plane.firstMaterial?.diffuse.contents = UIColor.green
         
         let planeNode = SCNNode(geometry: plane)
         planeNode.eulerAngles.x -= .pi / 2
-        planeNode.opacity = 0.25
+        planeNode.opacity = opacity
         
         return planeNode
     }
     
+    func nodeAdded(_ node: SCNNode, for anchor: ARImageAnchor) {
+        // Put a plane above image
+        let size = anchor.referenceImage.physicalSize
+        let coverNode = createFloor(with: size, opacity: 0.01)
+        node.addChildNode(coverNode)
+    }
+    
     func nodeAdded(_ node: SCNNode, for anchor: ARPlaneAnchor) {
-        let planeNode = createFloor(planeAnchor: anchor)
+        let extent = anchor.extent
+        let size = CGSize(width: CGFloat(extent.x), height: CGFloat(extent.z))
+        let planeNode = createFloor(with: size)
         planeNode.isHidden = arePlanesHidden
         
         // Add plane node to the list of plane nodes
@@ -249,6 +257,8 @@ extension ViewController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         switch anchor {
+        case let imageAnchor as ARImageAnchor:
+            nodeAdded(node, for: imageAnchor)
         case let planeAnchor as ARPlaneAnchor:
             nodeAdded(node, for: planeAnchor)
         default:
