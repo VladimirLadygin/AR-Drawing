@@ -3,7 +3,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet var sceneView: ARSCNView!
     
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     /// Add an object in f20 cm in ront of camera
     /// - Parameter node: node of the object to add
     func addNodeInFront(_ node: SCNNode) {
-         
+        
         // Get current camera frame
         guard let frame = sceneView.session.currentFrame else { return }
         
@@ -113,12 +113,15 @@ class ViewController: UIViewController {
         addNodeToSceneRoot(node)
     }
     
-    func addNodeToImage(_ node: SCNNode) {
-        
+    func addNodeToImage(_ node: SCNNode, at point: CGPoint) {
+        guard let result = sceneView.hitTest(point, options: [:]).first else { return }
+        guard result.node.name == "image" else { return }
+        node.transform = result.node.worldTransform
+        node.eulerAngles.x = 0
+        addNodeToSceneRoot(node)
     }
     
     func addNodeToSceneRoot(_ node: SCNNode) {
-        
         addNode(node, to: sceneView.scene.rootNode)
         
     }
@@ -139,14 +142,15 @@ class ViewController: UIViewController {
     func process(_ touches: Set<UITouch>) {
         guard let touch = touches.first, let selectedNode = selectedNode else { return }
         
+        let point = touch.location(in: sceneView)
+        
         switch objectMode {
         case .freeform:
             addNodeInFront(selectedNode)
         case .plane:
-            let point = touch.location(in: sceneView)
             addNode(selectedNode, at: point)
         case .image:
-            addNodeToImage(selectedNode)
+            addNodeToImage(selectedNode, at: point)
         }
     }
     
@@ -179,7 +183,7 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
-
+    
     // MARK: - Actions
     @IBAction func changeObjectMode(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -239,7 +243,8 @@ extension ViewController: ARSCNViewDelegate {
     func nodeAdded(_ node: SCNNode, for anchor: ARImageAnchor) {
         // Put a plane above image
         let size = anchor.referenceImage.physicalSize
-        let coverNode = createFloor(with: size, opacity: 0.01)
+        let coverNode = createFloor(with: size, opacity: 1)
+        coverNode.name = "image"
         node.addChildNode(coverNode)
     }
     
@@ -268,6 +273,8 @@ extension ViewController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         switch anchor {
+        case is ARImageAnchor:
+            break
         case let planeAnchor as ARPlaneAnchor:
             updateFloor(for: node, anchor: planeAnchor)
         default:

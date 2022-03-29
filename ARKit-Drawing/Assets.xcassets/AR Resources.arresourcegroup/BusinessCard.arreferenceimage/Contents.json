@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "dolphin.jpeg",
+      "filename" : "BusinessCard.png",
       "idiom" : "universal"
     }
   ],
@@ -11,6 +11,6 @@
   },
   "properties" : {
     "unit" : "centimeters",
-    "width" : 36.41829085457271
+    "width" : 5299.9393617021278
   }
 }
