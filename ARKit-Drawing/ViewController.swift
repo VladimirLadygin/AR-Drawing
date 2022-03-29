@@ -126,13 +126,13 @@ class ViewController: UIViewController {
         
     }
     // Add people occlusion
-        func peopleOcclusionAdd(){
-            if #available(iOS 13.0, *) {
-                configuration.frameSemantics.insert(.personSegmentationWithDepth)
-            } else {
-                // Fallback on earlier versions
-            }
+    func peopleOcclusionAdd(){
+        if #available(iOS 13.0, *) {
+            configuration.frameSemantics.insert(.personSegmentationWithDepth)
+        } else {
+            // Fallback on earlier versions
         }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showOptions" {
@@ -171,7 +171,7 @@ class ViewController: UIViewController {
         
         // Add people occlusion
         peopleOcclusionAdd()
-         
+        
         // Remove existing anchors if reset is true
         let options: ARSession.RunOptions = reset ? .removeExistingAnchors : []
         
@@ -186,7 +186,7 @@ class ViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         lastNode = nil
         process(touches)
-        }
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
