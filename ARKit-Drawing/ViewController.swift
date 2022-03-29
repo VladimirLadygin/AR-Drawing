@@ -125,6 +125,14 @@ class ViewController: UIViewController {
         addNode(node, to: sceneView.scene.rootNode)
         
     }
+    // Add people occlusion
+        func peopleOcclusionAdd(){
+            if #available(iOS 13.0, *) {
+                configuration.frameSemantics.insert(.personSegmentationWithDepth)
+            } else {
+                // Fallback on earlier versions
+            }
+        }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showOptions" {
@@ -160,6 +168,9 @@ class ViewController: UIViewController {
         
         // Hide all future planes
         arePlanesHidden = true
+        
+        // Add people occlusion
+        peopleOcclusionAdd()
          
         // Remove existing anchors if reset is true
         let options: ARSession.RunOptions = reset ? .removeExistingAnchors : []

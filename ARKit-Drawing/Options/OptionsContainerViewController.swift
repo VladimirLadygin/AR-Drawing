@@ -68,7 +68,11 @@ class OptionsContainerViewController: UIViewController, UINavigationControllerDe
             return fileEnumerator.compactMap { element in
                 let url = element as! URL
                 
-                guard url.pathExtension == "scn" || url.pathExtension == "dae" || url.pathExtension == "uszd" else { return nil }
+                guard
+                    url.pathExtension == "scn" ||
+                    url.pathExtension == "dae" ||
+                    url.pathExtension == "usdz"
+                else { return nil }
                 
                 return url.lastPathComponent
             }
@@ -78,6 +82,7 @@ class OptionsContainerViewController: UIViewController, UINavigationControllerDe
         let selector = OptionSelectorViewController(options: options)
         selector.optionSelectionCallback = { [unowned self] name in
             let nameWithoutExtension = name.replacingOccurrences(of: ".scn", with: "")
+            print("resourceFolder: \(resourceFolder), nameWithoutExtension: \(nameWithoutExtension), name:\(name)")
             let scene = SCNScene(named: "\(resourceFolder)/\(nameWithoutExtension)/\(name)")!
             self.delegate?.objectSelected(node: scene.rootNode)
         }
