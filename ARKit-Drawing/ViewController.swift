@@ -131,12 +131,7 @@ class ViewController: UIViewController {
             let optionsViewController = segue.destination as! OptionsContainerViewController
             optionsViewController.delegate = self
         }
-    }
-    
-    func reloadConfiguration() {
-        configuration.detectionImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)
-        configuration.planeDetection = .horizontal
-        sceneView.session.run(configuration)
+        
     }
     
     func process(_ touches: Set<UITouch>) {
@@ -147,19 +142,40 @@ class ViewController: UIViewController {
         switch objectMode {
         case .freeform:
             addNodeInFront(selectedNode)
-        case .plane:
-            addNode(selectedNode, at: point)
         case .image:
             addNodeToImage(selectedNode, at: point)
+        case .plane:
+            addNode(selectedNode, at: point)
         }
     }
+    
+    func reloadConfiguration(reset: Bool = false) {
+        // Clear objects placed
+        objectPlaced.forEach { $0.removeFromParentNode()}
+        objectPlaced.removeAll()
+        
+        //Clear placed planes
+        planeNodes.forEach { $0.removeFromParentNode() }
+        planeNodes.removeAll()
+        
+        // Hide all future planes
+        arePlanesHidden = true
+         
+        // Remove existing anchors if reset is true
+        let options: ARSession.RunOptions = reset ? .removeExistingAnchors : []
+        
+        // Reload configuration
+        configuration.detectionImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration, options: options)
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         lastNode = nil
         process(touches)
-        
-    }
+        }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
@@ -207,22 +223,28 @@ class ViewController: UIViewController {
 extension ViewController: OptionsViewControllerDelegate {
     
     func objectSelected(node: SCNNode) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
         selectedNode = node
     }
     
     func togglePlaneVisualization() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
         guard objectMode == .plane else { return }
         arePlanesHidden.toggle()
     }
     
     func undoLastObject() {
-        
+        if let lastObject = objectPlaced.last {
+            lastObject.removeFromParentNode()
+            objectPlaced.removeLast()
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     func resetScene() {
-        dismiss(animated: true, completion: nil)
+        reloadConfiguration(reset: true)
+        dismiss(animated: true)
     }
 }
 // MARK: - ARSCNViewDelegate
@@ -243,7 +265,7 @@ extension ViewController: ARSCNViewDelegate {
     func nodeAdded(_ node: SCNNode, for anchor: ARImageAnchor) {
         // Put a plane above image
         let size = anchor.referenceImage.physicalSize
-        let coverNode = createFloor(with: size, opacity: 1)
+        let coverNode = createFloor(with: size, opacity: 0.001)
         coverNode.name = "image"
         node.addChildNode(coverNode)
     }

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "BusinessCard.png",
+      "filename" : "Document_2022-03-29_170000.jpg",
       "idiom" : "universal"
     }
   ],
@@ -11,6 +11,6 @@
   },
   "properties" : {
     "unit" : "centimeters",
-    "width" : 5299.9393617021278
+    "width" : 10.499848484848485
   }
 }
