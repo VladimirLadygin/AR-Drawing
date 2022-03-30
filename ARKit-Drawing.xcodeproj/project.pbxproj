@@ -18,6 +18,7 @@
 		BEDB2EE6200EABAD001C6BBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB2EE4200EABAD001C6BBC /* LaunchScreen.storyboard */; };
 		BEDB2EEE200ECB94001C6BBC /* Options.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB2EED200ECB94001C6BBC /* Options.storyboard */; };
 		BEDB2EF0200ECC4C001C6BBC /* BasicShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB2EEF200ECC4C001C6BBC /* BasicShape.swift */; };
+		E7D55D6027F4A58F00432774 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D5F27F4A58F00432774 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BEDB2EE7200EABAD001C6BBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEDB2EED200ECB94001C6BBC /* Options.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Options.storyboard; sourceTree = "<group>"; };
 		BEDB2EEF200ECC4C001C6BBC /* BasicShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicShape.swift; sourceTree = "<group>"; };
+		E7D55D5F27F4A58F00432774 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,8 @@
 		BEDB2ECD200EABAD001C6BBC = {
 			isa = PBXGroup;
 			children = (
+				E7D55D6127F4A5A400432774 /* Sreens */,
+				E7D55D5F27F4A58F00432774 /* README.md */,
 				BEDB2ED8200EABAD001C6BBC /* ARKit-Drawing */,
 				BEDB2ED7200EABAD001C6BBC /* Products */,
 			);
@@ -88,6 +92,13 @@
 				BE618F31203E31B8005EC6F1 /* UIViewController+Extensions.swift */,
 			);
 			path = Options;
+			sourceTree = "<group>";
+		};
+		E7D55D6127F4A5A400432774 /* Sreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7D55D6027F4A58F00432774 /* README.md in Resources */,
 				BEDB2EDC200EABAD001C6BBC /* models.scnassets in Resources */,
 				BEDB2EEE200ECB94001C6BBC /* Options.storyboard in Resources */,
 				BEDB2EE6200EABAD001C6BBC /* LaunchScreen.storyboard in Resources */,
