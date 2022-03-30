@@ -58,13 +58,13 @@
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RK5-mG-jKn">
-                                <rect key="frame" x="16" y="843" width="158" height="29"/>
+                                <rect key="frame" x="16" y="838" width="186" height="34"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KaD-5l-R64">
-                                    <rect key="frame" x="0.0" y="0.0" width="158" height="29"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="186" height="34"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jVE-nl-i8i">
-                                            <rect key="frame" x="-1" y="0.0" width="160" height="30"/>
+                                            <rect key="frame" x="-1" y="1" width="188" height="33"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <segments>
                                                 <segment title="Freeform"/>
@@ -80,13 +80,13 @@
                                     <constraints>
                                         <constraint firstItem="jVE-nl-i8i" firstAttribute="leading" secondItem="KaD-5l-R64" secondAttribute="leading" constant="-1" id="BNA-q2-Z2a"/>
                                         <constraint firstItem="jVE-nl-i8i" firstAttribute="centerY" secondItem="KaD-5l-R64" secondAttribute="centerY" id="JnJ-O8-tkw"/>
-                                        <constraint firstItem="jVE-nl-i8i" firstAttribute="top" secondItem="KaD-5l-R64" secondAttribute="top" id="W9F-mp-tYI"/>
+                                        <constraint firstItem="jVE-nl-i8i" firstAttribute="top" secondItem="KaD-5l-R64" secondAttribute="top" constant="1" id="W9F-mp-tYI"/>
                                         <constraint firstItem="jVE-nl-i8i" firstAttribute="centerX" secondItem="KaD-5l-R64" secondAttribute="centerX" id="niw-pM-XQc"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="158" id="5d0-eI-fhj"/>
-                                    <constraint firstAttribute="height" constant="29" id="WNC-pW-iAf"/>
+                                    <constraint firstAttribute="width" constant="186" id="5d0-eI-fhj"/>
+                                    <constraint firstAttribute="height" constant="34" id="WNC-pW-iAf"/>
                                 </constraints>
                                 <blurEffect style="light"/>
                                 <userDefinedRuntimeAttributes>
