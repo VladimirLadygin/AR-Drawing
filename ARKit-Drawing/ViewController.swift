@@ -120,7 +120,8 @@ class ViewController: UIViewController {
         guard let result = sceneView.hitTest(point, options: [:]).first else { return }
         guard result.node.name == "image" else { return }
         node.transform = result.node.worldTransform
-        node.eulerAngles.x = 0
+        // Fix eulerAngles
+        node.eulerAngles.x += .pi / 2
         addNodeToSceneRoot(node)
     }
     
