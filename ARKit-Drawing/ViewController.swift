@@ -74,6 +74,9 @@ class ViewController: UIViewController {
         // Clone the node for creating separate copies of the project
         let clonedNode = node.clone()
         
+        // Fix piviot point to ground from bounding box ground coordinate
+        clonedNode.simdPivot.columns.3.y = clonedNode.boundingBox.min.y
+        
         // Remember last placed node
         lastNode = clonedNode
         
