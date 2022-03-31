@@ -19,6 +19,13 @@
 		BEDB2EEE200ECB94001C6BBC /* Options.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB2EED200ECB94001C6BBC /* Options.storyboard */; };
 		BEDB2EF0200ECC4C001C6BBC /* BasicShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB2EEF200ECC4C001C6BBC /* BasicShape.swift */; };
 		E7D55D6027F4A58F00432774 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D5F27F4A58F00432774 /* README.md */; };
+		E7D55D6927F5D9AE00432774 /* Screen00004.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6227F5D9AD00432774 /* Screen00004.jpg */; };
+		E7D55D6A27F5D9AE00432774 /* Screen00002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6327F5D9AD00432774 /* Screen00002.jpg */; };
+		E7D55D6B27F5D9AE00432774 /* Screen00003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6427F5D9AD00432774 /* Screen00003.jpg */; };
+		E7D55D6C27F5D9AE00432774 /* Screen00001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6527F5D9AD00432774 /* Screen00001.jpg */; };
+		E7D55D6D27F5D9AE00432774 /* Screen00007.JPEG in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6627F5D9AE00432774 /* Screen00007.JPEG */; };
+		E7D55D6E27F5D9AE00432774 /* Screen00006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6727F5D9AE00432774 /* Screen00006.jpg */; };
+		E7D55D6F27F5D9AE00432774 /* Screen00005.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7D55D6827F5D9AE00432774 /* Screen00005.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,13 @@
 		BEDB2EED200ECB94001C6BBC /* Options.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Options.storyboard; sourceTree = "<group>"; };
 		BEDB2EEF200ECC4C001C6BBC /* BasicShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicShape.swift; sourceTree = "<group>"; };
 		E7D55D5F27F4A58F00432774 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E7D55D6227F5D9AD00432774 /* Screen00004.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00004.jpg; sourceTree = "<group>"; };
+		E7D55D6327F5D9AD00432774 /* Screen00002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00002.jpg; sourceTree = "<group>"; };
+		E7D55D6427F5D9AD00432774 /* Screen00003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00003.jpg; sourceTree = "<group>"; };
+		E7D55D6527F5D9AD00432774 /* Screen00001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00001.jpg; sourceTree = "<group>"; };
+		E7D55D6627F5D9AE00432774 /* Screen00007.JPEG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00007.JPEG; sourceTree = "<group>"; };
+		E7D55D6727F5D9AE00432774 /* Screen00006.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00006.jpg; sourceTree = "<group>"; };
+		E7D55D6827F5D9AE00432774 /* Screen00005.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Screen00005.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +111,13 @@
 		E7D55D6127F4A5A400432774 /* Sreens */ = {
 			isa = PBXGroup;
 			children = (
+				E7D55D6527F5D9AD00432774 /* Screen00001.jpg */,
+				E7D55D6327F5D9AD00432774 /* Screen00002.jpg */,
+				E7D55D6427F5D9AD00432774 /* Screen00003.jpg */,
+				E7D55D6227F5D9AD00432774 /* Screen00004.jpg */,
+				E7D55D6827F5D9AE00432774 /* Screen00005.jpg */,
+				E7D55D6727F5D9AE00432774 /* Screen00006.jpg */,
+				E7D55D6627F5D9AE00432774 /* Screen00007.JPEG */,
 			);
 			path = Sreens;
 			sourceTree = "<group>";
@@ -161,12 +182,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7D55D6A27F5D9AE00432774 /* Screen00002.jpg in Resources */,
 				E7D55D6027F4A58F00432774 /* README.md in Resources */,
 				BEDB2EDC200EABAD001C6BBC /* models.scnassets in Resources */,
 				BEDB2EEE200ECB94001C6BBC /* Options.storyboard in Resources */,
+				E7D55D6F27F5D9AE00432774 /* Screen00005.jpg in Resources */,
 				BEDB2EE6200EABAD001C6BBC /* LaunchScreen.storyboard in Resources */,
 				BEDB2EE3200EABAD001C6BBC /* Assets.xcassets in Resources */,
+				E7D55D6927F5D9AE00432774 /* Screen00004.jpg in Resources */,
 				BEDB2EE1200EABAD001C6BBC /* Main.storyboard in Resources */,
+				E7D55D6E27F5D9AE00432774 /* Screen00006.jpg in Resources */,
+				E7D55D6B27F5D9AE00432774 /* Screen00003.jpg in Resources */,
+				E7D55D6C27F5D9AE00432774 /* Screen00001.jpg in Resources */,
+				E7D55D6D27F5D9AE00432774 /* Screen00007.JPEG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
