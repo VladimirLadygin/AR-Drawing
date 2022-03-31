@@ -10,10 +10,10 @@ This app can painting to horizontal desks by different virtual objects and stays
 - add sort function for option container view controller in the select scene option
 
 ## Screenshots:
-![Screenshot1](/Screens/Screen00001.jpg)
-![Screenshot2](/Screens/Screen00002.jpg)
-![Screenshot3](/Screens/Screen00003.jpg)
-![Screenshot4](/Screens/Screen00004.jpg)
-![Screenshot5](/Screens/Screen00005.jpg)
-![Screenshot6](/Screens/Screen00006.jpg)
-![Screenshot7](/Screens/Screen00007.jpg)
+![Screenshot1](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00001.jpg)
+![Screenshot2](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00002.jpg)
+![Screenshot3](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00003.jpg)
+![Screenshot4](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00004.jpg)
+![Screenshot5](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00005.jpg)
+![Screenshot6](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00006.jpg)
+![Screenshot7](https://github.com/VladimirLadygin/AR-Drawing/blob/master/Sreens/Screen00007.jpg)
